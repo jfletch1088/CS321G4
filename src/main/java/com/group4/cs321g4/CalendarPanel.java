@@ -7,6 +7,8 @@ package com.group4.cs321g4;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -27,7 +29,9 @@ public class CalendarPanel extends JPanel {
         // Create a panel for the individual days in each month
             JPanel calDaysPanel = new JPanel();
             // The # of rows in each month is variable based on the layout of the month, so rows = 0.
-            calDaysPanel.setLayout(new GridLayout(0, 7));
+            calDaysPanel.setLayout(new GridBagLayout());
+            GridBagConstraints c = new GridBagConstraints();
+            c.fill = GridBagConstraints.BOTH;
             // Use built in java.time to get current date
             LocalDate date = LocalDate.now();
             // Set day of the month to 1 so each month calendar begins on correct columm (Sun->Sat)
@@ -42,7 +46,10 @@ public class CalendarPanel extends JPanel {
             boolean firstDOMSet = false;
             // iterator variable for firstDOMSet conditional loop
             int j = 1;
-            
+            int calendarRow = 0;
+            int calendarCol = 0;
+            int buttonsMade = 0;
+           
             // For-loop to iterate from 2nd day of month until last day of month, used to populate the calendar. 
             for (int i = 2; i <= daysInMonth; i++)
             {
@@ -53,31 +60,46 @@ public class CalendarPanel extends JPanel {
                     if (dow.getValue() == 7 && !firstDOMSet)
                     {
                         JButton calButton = new JButton("1");
-                        calDaysPanel.add(calButton);
+                        c.gridx = calendarCol;
+                        c.gridy = 0;
+                        calButton.setSize(30, 30);
+                        calDaysPanel.add(calButton, c);
                         firstDOMSet = true;
+                        buttonsMade++;
+                        calendarCol++;
                         break;
                     // If it isn't add a blank button and then add "1"
                     } else if (dow.getValue() == j && !firstDOMSet)
                     {
-                        JButton blankButton = new JButton();
-                        calDaysPanel.add(blankButton);
                         JButton calButton = new JButton("1");
-                        calDaysPanel.add(calButton);
+                        c.gridx = j;
+                        c.gridy = calendarRow;
+                        calDaysPanel.add(calButton, c);
                         firstDOMSet = true;
+                        if (j != 6)
+                        {
+                            calendarCol = j+1;
+                        }
+                        calendarCol = j;
                         break;
-                    } else
-                    {
-                        JButton calButton = new JButton();
-                        calDaysPanel.add(calButton);
-                    }
+                    } 
                     j++;
                 }
-                
+                buttonsMade = calendarCol;
                 // Populate additional buttons on the calendar if the first day of the month has been set
                 if (firstDOMSet) 
                 {
                     JButton calButton = new JButton(Integer.toString(i));
-                    calDaysPanel.add(calButton);
+                    c.gridx = calendarCol;
+                    c.gridy = calendarRow;
+                    calDaysPanel.add(calButton, c);
+                    buttonsMade++;
+                    calendarCol++;
+                }
+                if (buttonsMade % 7 == 0)
+                {
+                    calendarRow++;
+                    calendarCol = 0;
                 }
             }
             

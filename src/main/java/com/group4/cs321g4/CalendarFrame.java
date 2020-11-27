@@ -20,7 +20,7 @@ public class CalendarFrame extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             CalendarFrame frame = new CalendarFrame();
-            frame.setSize(800, 500);
+            frame.setSize(350, 250);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
             
