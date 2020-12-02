@@ -12,6 +12,10 @@ import javax.swing.JTextField;
 
 
 public class ExerciseForm extends JPanel implements ActionListener {
+    protected JTextField exDateField;
+    protected JTextField exTypeField;
+    protected JTextField exLengthHrsField;
+    protected JTextField exLengthMinsField;
     public ExerciseForm()
     {
         super(new GridBagLayout());
@@ -19,19 +23,19 @@ public class ExerciseForm extends JPanel implements ActionListener {
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
         
-        JLabel exDateLabel = new JLabel("Enter the date of workout (mm/dd/yy): ");
-        JTextField exDateField = new JTextField(20);
+        JLabel exDateLabel = new JLabel("Enter the date of workout (mm/dd/yyyy): ");
+        exDateField = new JTextField(20);
         add(exDateLabel, c);
         add(exDateField, c);
         
         JLabel exTypeLabel = new JLabel("Enter your exercise type: ");
-        JTextField exTypeField = new JTextField(20);
+        exTypeField = new JTextField(20);
         add(exTypeLabel, c);
         add(exTypeField, c);
         
         JLabel exLengthLabel = new JLabel("Enter your exercise length: ");
-        JTextField exLengthHrsField = new JTextField(5);
-        JTextField exLengthMinsField = new JTextField(5);
+        exLengthHrsField = new JTextField(5);
+        exLengthMinsField = new JTextField(5);
         JLabel exLengthHrsLabel = new JLabel("Hours: ");
         JLabel exLengthMinsLabel = new JLabel("Minutes: ");
         add(exLengthLabel, c);
@@ -41,6 +45,7 @@ public class ExerciseForm extends JPanel implements ActionListener {
         add(exLengthMinsField, c);
         
         JButton submitButton = new JButton("Submit");
+        submitButton.addActionListener(this);
         add(submitButton,c);
     }
     
@@ -57,13 +62,26 @@ public class ExerciseForm extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String date = exDateField.getText();
+        String[] formatDate = date.split("/");
+        int exerMonth = Integer.parseInt(formatDate[0]);
+        int exerDay = Integer.parseInt(formatDate[1]);
+        int exerYear = Integer.parseInt(formatDate[2]);
+        
+        String exerType = exTypeField.getText();
+        int exerLengthHrs = Integer.parseInt(exLengthHrsField.getText());
+        int exerLengthMins = Integer.parseInt(exLengthMinsField.getText());
+        
+        //Test all data collection from submit button
+        System.out.println("Date of exercise: " + exerMonth + "/" + exerDay + "/" + 
+                exerYear + "\nType of exercise: " + exerType + "\nLength of exercise: " +
+                exerLengthHrs + " hours and " + exerLengthMins + " minutes.");
     }
     
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createFrame();
+                createFrame(); 
             }
         });
     }
