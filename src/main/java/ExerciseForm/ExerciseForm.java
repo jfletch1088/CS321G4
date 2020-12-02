@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,10 +19,16 @@ public class ExerciseForm extends JPanel implements ActionListener {
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
         
+        JLabel exDateLabel = new JLabel("Enter the date of workout (mm/dd/yy): ");
+        JTextField exDateField = new JTextField(20);
+        add(exDateLabel, c);
+        add(exDateField, c);
+        
         JLabel exTypeLabel = new JLabel("Enter your exercise type: ");
         JTextField exTypeField = new JTextField(20);
         add(exTypeLabel, c);
         add(exTypeField, c);
+        
         JLabel exLengthLabel = new JLabel("Enter your exercise length: ");
         JTextField exLengthHrsField = new JTextField(5);
         JTextField exLengthMinsField = new JTextField(5);
@@ -32,12 +39,14 @@ public class ExerciseForm extends JPanel implements ActionListener {
         add(exLengthHrsField, c);
         add(exLengthMinsLabel, c);
         add(exLengthMinsField, c);
-       
+        
+        JButton submitButton = new JButton("Submit");
+        add(submitButton,c);
     }
     
     private static void createFrame()
     {
-        JFrame frame = new JFrame("TextDemo");
+        JFrame frame = new JFrame("Exercise Entry");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.add(new ExerciseForm());
@@ -52,8 +61,6 @@ public class ExerciseForm extends JPanel implements ActionListener {
     }
     
     public static void main(String[] args) {
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createFrame();
