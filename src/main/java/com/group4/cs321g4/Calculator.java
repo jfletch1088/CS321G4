@@ -1,4 +1,4 @@
-package calculator;
+package com.group4.cs321g4;
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

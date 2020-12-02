@@ -1,4 +1,4 @@
-package ExerciseForm;
+package com.group4.cs321g4;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -72,10 +72,13 @@ public class ExerciseForm extends JPanel implements ActionListener {
         int exerLengthHrs = Integer.parseInt(exLengthHrsField.getText());
         int exerLengthMins = Integer.parseInt(exLengthMinsField.getText());
         
+        
+        ExerciseEntry exEntry = new ExerciseEntry(exerMonth, exerDay, exerYear, exerType, exerLengthHrs, exerLengthMins);
+        
         //Test all data collection from submit button
-        System.out.println("Date of exercise: " + exerMonth + "/" + exerDay + "/" + 
-                exerYear + "\nType of exercise: " + exerType + "\nLength of exercise: " +
-                exerLengthHrs + " hours and " + exerLengthMins + " minutes.");
+        System.out.println("Date of exercise: " + exEntry.getMonth() + "/" + exEntry.getDay() + "/" + 
+                exEntry.getYear() + "\nType of exercise: " + exEntry.getExerciseType() + "\nLength of exercise: " +
+                exEntry.getDurationHrs() + " hours and " + exEntry.getDurationMins() + " minutes.");
     }
     
     public static void main(String[] args) {
