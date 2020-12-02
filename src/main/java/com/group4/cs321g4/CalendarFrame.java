@@ -24,6 +24,7 @@ public class CalendarFrame extends JFrame {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
             //Test line
+            //Test line 2
             
             // Create a panel for the days of the week column headers (Sun thru Sat)
             JPanel calDayHeaderPanel = new JPanel();
