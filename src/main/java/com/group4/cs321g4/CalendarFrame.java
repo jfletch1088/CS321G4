@@ -20,11 +20,9 @@ public class CalendarFrame extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             CalendarFrame frame = new CalendarFrame();
-            frame.setSize(800, 300);
+            frame.setSize(350, 250);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
-            //Test line
-            //Test line 2
             
             // Create a panel for the days of the week column headers (Sun thru Sat)
             JPanel calDayHeaderPanel = new JPanel();
