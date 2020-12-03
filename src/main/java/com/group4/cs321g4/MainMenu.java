@@ -109,7 +109,7 @@ public class MainMenu implements ActionListener {
 		
 		// This section controls the secondary menu for the Calendar
 		
-		calendarPanel.add(calendarLabel);
+		calendarPanel = new CalendarPanel(calendarFrame);
 		
 		calendarFrame.add(calendarPanel, BorderLayout.CENTER);
 		calendarFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
