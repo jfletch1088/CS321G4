@@ -10,27 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Calculator implements ActionListener {
+public class Calculator extends JPanel implements ActionListener {
    private static JTextField inputBox;
-
-   Calculator(){}
-   public static void main(String[] args) {
-      createWindow();
-   }
-
-   private static void createWindow() {          
-      JFrame frame = new JFrame("Calculator");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-      createUI(frame);
-      frame.setSize(200, 200);            
-      frame.setLocationRelativeTo(null);
-      frame.setVisible(true);
-   }
-
-   public static void createUI(JFrame frame) {
+   private static JFrame frame;
+   
+   Calculator(){
       JPanel panel = new JPanel();
-      Calculator calculator = new Calculator();
       GridBagLayout layout = new GridBagLayout();          
       GridBagConstraints gbc = new GridBagConstraints();
       panel.setLayout(layout);
@@ -49,16 +34,16 @@ public class Calculator implements ActionListener {
       JButton buttonClear = new JButton("C");JButton buttonDot = new JButton(".");
       JButton buttonEquals = new JButton("=");
 
-      button1.addActionListener(calculator);button2.addActionListener(calculator);
-      button3.addActionListener(calculator);button4.addActionListener(calculator);
-      button5.addActionListener(calculator);button6.addActionListener(calculator);
-      button7.addActionListener(calculator);button8.addActionListener(calculator);
-      button9.addActionListener(calculator);button0.addActionListener(calculator);
+      button1.addActionListener(this);button2.addActionListener(this);
+      button3.addActionListener(this);button4.addActionListener(this);
+      button5.addActionListener(this);button6.addActionListener(this);
+      button7.addActionListener(this);button8.addActionListener(this);
+      button9.addActionListener(this);button0.addActionListener(this);
 
-      buttonPlus.addActionListener(calculator);buttonMinus.addActionListener(calculator);
-      buttonDivide.addActionListener(calculator);buttonMultiply.addActionListener(calculator);
-      buttonClear.addActionListener(calculator);buttonDot.addActionListener(calculator);
-      buttonEquals.addActionListener(calculator);
+      buttonPlus.addActionListener(this);buttonMinus.addActionListener(this);
+      buttonDivide.addActionListener(this);buttonMultiply.addActionListener(this);
+      buttonClear.addActionListener(this);buttonDot.addActionListener(this);
+      buttonEquals.addActionListener(this);
 
       gbc.fill = GridBagConstraints.HORIZONTAL;
       gbc.gridx = 0; gbc.gridy = 0; panel.add(button1, gbc);        
@@ -81,7 +66,25 @@ public class Calculator implements ActionListener {
 
       gbc.gridx = 0; gbc.gridy = 4; panel.add(inputBox, gbc);        
       gbc.gridx = 3; gbc.gridy = 4; panel.add(buttonEquals, gbc);
-      frame.getContentPane().add(panel, BorderLayout.CENTER);        
+      add(panel, BorderLayout.CENTER);    
+   }
+   public static void main(String[] args) {
+      createWindow();
+   }
+
+   public static void createUI(JFrame frame) {
+         
+   }
+
+   
+   private static void createWindow() { 
+      frame = new JFrame("Calculator");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      createUI(frame);
+      frame.setSize(200, 200);            
+      frame.setLocationRelativeTo(null);
+      frame.setVisible(true);
    }
 
    public void actionPerformed(ActionEvent e) {

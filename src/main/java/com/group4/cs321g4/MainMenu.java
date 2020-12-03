@@ -1,8 +1,6 @@
 package com.group4.cs321g4;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -10,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 public class MainMenu implements ActionListener {
 	
@@ -125,7 +122,7 @@ public class MainMenu implements ActionListener {
 		
 		// This section controls the secondary menu for Exercise Entry 
 		
-		exerciseEntryPanel.add(exerciseEntryLabel);
+		exerciseEntryPanel = new ExerciseForm();
 		
 		exerciseEntryFrame.add(exerciseEntryPanel, BorderLayout.CENTER);
 		exerciseEntryFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,7 +135,7 @@ public class MainMenu implements ActionListener {
 		
 		// This section controls the secondary menu for the Calorie Calculator
 		
-		calorieCalcPanel.add(calorieCalcLabel);
+		calorieCalcPanel = new Calculator();
 		
 		calorieCalcFrame.add(calorieCalcPanel, BorderLayout.CENTER);
 		calorieCalcFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -171,13 +168,11 @@ public class MainMenu implements ActionListener {
 		else if(event.getSource() == calendarButton)
 		{
 			menuFrame.setVisible(false);
-			
 			calendarFrame.setVisible(true);
 		}
 		else if(event.getSource() == exerciseEntryButton)
 		{
 			menuFrame.setVisible(false);
-			
 			exerciseEntryFrame.setVisible(true);
 		}
 		else if(event.getSource() == calorieCalcButton)
