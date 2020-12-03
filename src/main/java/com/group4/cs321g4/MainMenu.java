@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainMenu implements ActionListener {
+public class MainMenu extends JFrame implements ActionListener {
 	
 	int count = 0;
 	// Frames
@@ -49,11 +49,11 @@ public class MainMenu implements ActionListener {
 	{
 		// Frames----------------------------------------------------------
 		menuFrame = new JFrame(); 											// Frame for the main menu
+                removeAll();
 		progressFrame = new JFrame();										// Frame for progress log menu
 		calendarFrame = new JFrame();										// Frame for calendar menu
 		exerciseEntryFrame = new JFrame();
 		calorieCalcFrame = new JFrame();
-		
 		// Panels----------------------------------------------------------	
 		progressLogPanel = new JPanel();									// Panel for progress log frame
 		mainPanel = new JPanel();											// Panel for main menu frame
@@ -95,57 +95,10 @@ public class MainMenu implements ActionListener {
 		menuFrame.pack();
 		menuFrame.setSize(800, 300);
 		menuFrame.setVisible(true);
-		
-		// This section controls the secondary menu for Progress Log
-		
-		progressLogPanel.add(progressLogLabel);
-		
-		progressFrame.add(progressLogPanel, BorderLayout.CENTER);
-		progressFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		progressFrame.setTitle("Progress Log Menu");
-		progressFrame.pack();
-		progressFrame.setSize(800, 300);
-		progressFrame.setVisible(false);
-		
+
 		progressLogButton.addActionListener(this);
-		
-		// This section controls the secondary menu for the Calendar
-		
-		calendarPanel = new CalendarPanel(calendarFrame);
-		
-		calendarFrame.add(calendarPanel, BorderLayout.CENTER);
-		calendarFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		calendarFrame.setTitle("Progress Log Menu");
-		calendarFrame.pack();
-		calendarFrame.setSize(800, 300);
-		calendarFrame.setVisible(false);
-		
 		calendarButton.addActionListener(this);
-		
-		// This section controls the secondary menu for Exercise Entry 
-		
-		exerciseEntryPanel = new ExerciseForm();
-		
-		exerciseEntryFrame.add(exerciseEntryPanel, BorderLayout.CENTER);
-		exerciseEntryFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		exerciseEntryFrame.setTitle("Progress Log Menu");
-		exerciseEntryFrame.pack();
-		exerciseEntryFrame.setSize(800, 300);
-		exerciseEntryFrame.setVisible(false);
-		
 		exerciseEntryButton.addActionListener(this);
-		
-		// This section controls the secondary menu for the Calorie Calculator
-		
-		calorieCalcPanel = new Calculator();
-		
-		calorieCalcFrame.add(calorieCalcPanel, BorderLayout.CENTER);
-		calorieCalcFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		calorieCalcFrame.setTitle("Progress Log Menu");
-		calorieCalcFrame.pack();
-		calorieCalcFrame.setSize(800, 300);
-		calorieCalcFrame.setVisible(false);
-		
 		calorieCalcButton.addActionListener(this);
 		
 		
@@ -163,27 +116,83 @@ public class MainMenu implements ActionListener {
 		
 		if(event.getSource() == progressLogButton)
 		{
-			menuFrame.setVisible(false);
-			progressFrame.setVisible(true);
-                        currentFrame = progressFrame;
+			menuFrame.remove(mainPanel);
+                        progressLogPanel = new JPanel();
+                        menuFrame.add(progressLogPanel, BorderLayout.CENTER);
+                        JButton mainMenuBtn = new JButton("Back");
+                        menuFrame.add(mainMenuBtn, BorderLayout.SOUTH);
+                        mainMenuBtn.addActionListener(e -> {
+                            menuFrame.remove(progressLogPanel);
+                            menuFrame.add(mainPanel);
+                            menuFrame.remove(mainMenuBtn);
+                            menuFrame.pack();
+                            menuFrame.setSize(800, 300);
+                        });
+
+                        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        menuFrame.setTitle("Exercise Tracking System");
+                        menuFrame.pack();    
+                        menuFrame.setSize(800, 300);
 		}
 		else if(event.getSource() == calendarButton)
 		{
-			menuFrame.setVisible(false);
-			calendarFrame.setVisible(true);
-                        currentFrame = calendarFrame;
+			menuFrame.remove(mainPanel);
+                        calendarPanel = new CalendarPanel(menuFrame);
+                        menuFrame.add(calendarPanel, BorderLayout.CENTER);
+                        JButton mainMenuBtn = new JButton("Back");
+                        menuFrame.add(mainMenuBtn, BorderLayout.SOUTH);
+                        mainMenuBtn.addActionListener(e -> {
+                            menuFrame.remove(calendarPanel);
+                            menuFrame.add(mainPanel);
+                            menuFrame.remove(mainMenuBtn);
+                            menuFrame.pack();
+                            menuFrame.setSize(800, 300);
+                        });
+
+                        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        menuFrame.setTitle("Exercise Tracking System");
+                        menuFrame.pack();    
+                        menuFrame.setSize(800, 300);
 		}
 		else if(event.getSource() == exerciseEntryButton)
 		{
-			menuFrame.setVisible(false);
-			exerciseEntryFrame.setVisible(true);
-                        currentFrame = exerciseEntryFrame;
+                        menuFrame.remove(mainPanel);
+                        exerciseEntryPanel = new ExerciseForm();
+                        menuFrame.add(exerciseEntryPanel, BorderLayout.CENTER);
+                        JButton mainMenuBtn = new JButton("Back");
+                        menuFrame.add(mainMenuBtn, BorderLayout.SOUTH);
+                        mainMenuBtn.addActionListener(e -> {
+                            menuFrame.remove(exerciseEntryPanel);
+                            menuFrame.add(mainPanel);
+                            menuFrame.remove(mainMenuBtn);
+                            menuFrame.pack();
+                            menuFrame.setSize(800, 300);
+                        });
+
+                        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        menuFrame.setTitle("Exercise Tracking System");
+                        menuFrame.pack();    
+                        menuFrame.setSize(800, 300);
 		}
 		else if(event.getSource() == calorieCalcButton)
 		{
-			menuFrame.setVisible(false);
-			calorieCalcFrame.setVisible(true);
-                        currentFrame = calorieCalcFrame;
+			menuFrame.remove(mainPanel);
+                        calorieCalcPanel = new Calculator();
+                        menuFrame.add(calorieCalcPanel, BorderLayout.CENTER);
+                        JButton mainMenuBtn = new JButton("Back");
+                        menuFrame.add(mainMenuBtn, BorderLayout.SOUTH);
+                        mainMenuBtn.addActionListener(e -> {
+                            menuFrame.remove(calorieCalcPanel);
+                            menuFrame.add(mainPanel);
+                            menuFrame.remove(mainMenuBtn);
+                            menuFrame.pack();
+                            menuFrame.setSize(800, 300);
+                        });
+
+                        menuFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        menuFrame.setTitle("Exercise Tracking System");
+                        menuFrame.pack();    
+                        menuFrame.setSize(800, 300);                 
 		}
 		
 		

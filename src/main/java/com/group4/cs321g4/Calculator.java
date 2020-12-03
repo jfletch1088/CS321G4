@@ -6,13 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Calculator extends JPanel implements ActionListener {
    private static JTextField inputBox;
-   private static JFrame frame;
    
    Calculator(){
       JPanel panel = new JPanel();
@@ -66,26 +64,7 @@ public class Calculator extends JPanel implements ActionListener {
 
       gbc.gridx = 0; gbc.gridy = 4; panel.add(inputBox, gbc);        
       gbc.gridx = 3; gbc.gridy = 4; panel.add(buttonEquals, gbc);
-      add(panel, BorderLayout.CENTER);    
-      JButton mainMenuBtn = new JButton("Back");
-        mainMenuBtn.addActionListener(event -> {
-        setVisible(false);
-        new MainMenu();
-        });
-        add(mainMenuBtn, gbc);
-   }
-   public static void main(String[] args) {
-      createWindow();
-   }
-
-   private static void createWindow() { 
-      frame = new JFrame("Calculator");
-      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-      createUI(frame);
-      frame.setSize(200, 200);            
-      frame.setLocationRelativeTo(null);
-      frame.setVisible(true);
+      add(panel, BorderLayout.CENTER); 
    }
 
    public void actionPerformed(ActionEvent e) {

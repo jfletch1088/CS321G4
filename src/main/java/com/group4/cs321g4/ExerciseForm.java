@@ -1,9 +1,12 @@
 package com.group4.cs321g4;
 
+import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,26 +51,16 @@ public class ExerciseForm extends JPanel implements ActionListener {
         submitButton.addActionListener(this);
         add(submitButton,c);
         
-        JButton mainMenuBtn = new JButton("Back");
+        /*JButton mainMenuBtn = new JButton("Back");
+        
         mainMenuBtn.addActionListener(event -> {
-        setVisible(false);
-        new MainMenu();
+            new MainMenu();
         });
-        add(mainMenuBtn, c);
+        
+        add(mainMenuBtn, c);*/
        
     }
-    
-    private static void createFrame()
-    {
-        JFrame frame = new JFrame("Exercise Entry");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        frame.add(new ExerciseForm());
-
-        frame.pack();
-        frame.setVisible(true);
-    }
-
+   
     @Override
     public void actionPerformed(ActionEvent e) {
         String date = exDateField.getText();
@@ -82,18 +75,24 @@ public class ExerciseForm extends JPanel implements ActionListener {
         
         
         ExerciseEntry exEntry = new ExerciseEntry(exerMonth, exerDay, exerYear, exerType, exerLengthHrs, exerLengthMins);
-        
-        //Test all data collection from submit button
-        System.out.println("Date of exercise: " + exEntry.getMonth() + "/" + exEntry.getDay() + "/" + 
-                exEntry.getYear() + "\nType of exercise: " + exEntry.getExerciseType() + "\nLength of exercise: " +
-                exEntry.getDurationHrs() + " hours and " + exEntry.getDurationMins() + " minutes.");
+       
+        try 
+        {
+            FileWriter writeFile = new FileWriter("log.txt");
+            writeFile.write(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins + ";");
+            writeFile.close();
+        } catch (IOException error) {
+            System.out.println("An error occurred writing to file.");
+            error.printStackTrace();
+        }
+        //new ExerciseForm();
     }
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createFrame(); 
             }
         });
-    }
+    }*/
 }
