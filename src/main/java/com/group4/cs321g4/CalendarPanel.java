@@ -15,11 +15,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class CalendarPanel extends JPanel {
-    static int adjustMonth = 0;
-    public CalendarPanel(JFrame frame){
+    static int adjustMonth= 0;
+    public CalendarPanel(){
         
         GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
+        c.fill = GridBagConstraints.BOTH;
         
         // Create a panel for the individual days in each month
         JPanel calDaysPanel = new JPanel();
@@ -68,7 +68,7 @@ public class CalendarPanel extends JPanel {
                 {
                     JButton calButton = new JButton("1");
                     c.gridx = calendarCol;
-                    c.gridy = 0;
+                    c.gridy = 2;
                     calButton.setSize(30, 30);
                     calDaysPanel.add(calButton, c);
                     firstDOMSet = true;
@@ -119,25 +119,21 @@ public class CalendarPanel extends JPanel {
         c.gridx = 2;
         calDaysPanel.add(calNext, c);
         
-        add(calDaysPanel, BorderLayout.CENTER);
+        add(calDaysPanel);
         // Functionality for the Previous/Next buttons
         // If Previous is pressed, currentMonth gets decremented
         calPrev.addActionListener(event -> {
-            Container pane = frame.getContentPane();
-            pane.remove(CalendarPanel.this);
             adjustMonth--;
-            CalendarPanel prevPanel = new CalendarPanel(frame);
-            pane.add(prevPanel, BorderLayout.CENTER);
-            pane.revalidate();
+            remove(calDaysPanel);
+            add(new CalendarPanel(), BorderLayout.NORTH);
+            revalidate();
                 });
         // If Next is pressed, currentMonth gets incremented
         calNext.addActionListener(event -> {
-            Container pane = frame.getContentPane();
-            pane.remove(CalendarPanel.this);
             adjustMonth++;
-            CalendarPanel prevPanel = new CalendarPanel(frame);
-            pane.add(prevPanel, BorderLayout.CENTER);
-            pane.revalidate();
+            remove(calDaysPanel);
+            add(new CalendarPanel(), BorderLayout.NORTH);
+            revalidate();
                 });
     }
 }
