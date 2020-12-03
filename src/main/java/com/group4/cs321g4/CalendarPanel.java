@@ -19,7 +19,6 @@ public class CalendarPanel extends JPanel {
     public CalendarPanel(JFrame frame){
         
         GridBagConstraints c = new GridBagConstraints();
-        c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
         
         // Create a panel for the individual days in each month
@@ -41,19 +40,23 @@ public class CalendarPanel extends JPanel {
         boolean firstDOMSet = false;
         // iterator variable for firstDOMSet conditional loop
         int j = 1;
-        int calendarRow = 1;
+        int calendarRow = 2;
         int calendarCol = 0;
         int buttonsMade = 0;
 
+        Month month = date.getMonth();
+        JLabel curMonth = new JLabel(month.toString());
+        calDaysPanel.add(curMonth, c);
         // For-loop to create a panel for each day of the week header
-    
         String[]daysOfWeek = {"Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"};
         for (int i = 0; i<7;i++)
         {
+            c.gridy = 1;
             c.gridx = i;
             String header = daysOfWeek[i];
             calDaysPanel.add(new JLabel(header), c);
         }
+        
         // For-loop to iterate from 2nd day of month until last day of month, used to populate the calendar. 
         for (int i = 2; i <= daysInMonth; i++)
         {
@@ -107,21 +110,16 @@ public class CalendarPanel extends JPanel {
             }
         }
 
-        // Create the Previous/Next panel
-        JPanel calPrevNext = new JPanel();
-        calPrevNext.setLayout(new GridLayout(1, 2));
         // Create the previous/next buttons and add them to the panel
-        JButton calPrev = new JButton("<<<< Previous");
-        JButton calNext = new JButton("Next >>>>");
-        calPrevNext.add(calPrev);
-        calPrevNext.add(calNext);
-
-        Month month = date.getMonth();
-        JLabel curMonth = new JLabel(month.toString());
-
+        JButton calPrev = new JButton("<<<<");
+        JButton calNext = new JButton(">>>>");
+        c.gridy = calendarRow+3;
+        c.gridx = 0;
+        calDaysPanel.add(calPrev, c);
+        c.gridx = 2;
+        calDaysPanel.add(calNext, c);
+        
         add(calDaysPanel, BorderLayout.CENTER);
-        add(calPrevNext, BorderLayout.SOUTH);
-        add(curMonth, BorderLayout.SOUTH);
         // Functionality for the Previous/Next buttons
         // If Previous is pressed, currentMonth gets decremented
         calPrev.addActionListener(event -> {
@@ -142,22 +140,4 @@ public class CalendarPanel extends JPanel {
             pane.revalidate();
                 });
     }
-    
-    /*@Override
-    public Dimension getPreferredSize() 
-    {
-        return new Dimension(800, 300);
-    }
-    
-    @Override
-    public Dimension getMinimumSize() 
-    {
-        return getPreferredSize();
-    }
-
-    @Override
-    public Dimension getMaximumSize() 
-    {
-        return getPreferredSize();
-    }*/
 }
