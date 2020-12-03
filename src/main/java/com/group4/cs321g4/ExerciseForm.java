@@ -1,14 +1,13 @@
 package com.group4.cs321g4;
 
-import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -50,15 +49,6 @@ public class ExerciseForm extends JPanel implements ActionListener {
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(this);
         add(submitButton,c);
-        
-        /*JButton mainMenuBtn = new JButton("Back");
-        
-        mainMenuBtn.addActionListener(event -> {
-            new MainMenu();
-        });
-        
-        add(mainMenuBtn, c);*/
-       
     }
    
     @Override
@@ -81,18 +71,11 @@ public class ExerciseForm extends JPanel implements ActionListener {
             FileWriter writeFile = new FileWriter("log.txt");
             writeFile.write(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins + ";");
             writeFile.close();
+            System.out.println("tried to write to file");
         } catch (IOException error) {
             System.out.println("An error occurred writing to file.");
             error.printStackTrace();
         }
         //new ExerciseForm();
     }
-    
-    /*public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createFrame(); 
-            }
-        });
-    }*/
 }

@@ -4,6 +4,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -83,13 +85,27 @@ public class MainMenu extends JFrame implements ActionListener {
 		calendarButton.addActionListener(this);
 		exerciseEntryButton.addActionListener(this);
 		calorieCalcButton.addActionListener(this);
-		
+            
 		
 		
 	}
 	
 	public static void main(String[] args) {
-		
+		try 
+            {
+                File logFile = new File("/log.txt");
+                if (logFile.createNewFile())
+                {
+                    System.out.println("log file created");
+                }else 
+                {
+                    System.out.println("log file not created");
+                }
+            }catch (IOException error)
+            {
+                System.out.println("An error occurred.");
+                error.printStackTrace();
+            }
 		new MainMenu();
 
 	}
