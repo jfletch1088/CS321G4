@@ -1,5 +1,6 @@
 package com.group4.cs321g4;
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,8 @@ public class MainMenu implements ActionListener {
 	private JFrame calendarFrame;
 	private JFrame exerciseEntryFrame;
 	private JFrame calorieCalcFrame;
-	
+	private JFrame currentFrame;
+        
 	// Panels
 	private JPanel mainPanel;
 	private JPanel progressLogPanel;
@@ -162,28 +164,29 @@ public class MainMenu implements ActionListener {
 		if(event.getSource() == progressLogButton)
 		{
 			menuFrame.setVisible(false);
-			
 			progressFrame.setVisible(true);
+                        currentFrame = progressFrame;
 		}
 		else if(event.getSource() == calendarButton)
 		{
 			menuFrame.setVisible(false);
 			calendarFrame.setVisible(true);
+                        currentFrame = calendarFrame;
 		}
 		else if(event.getSource() == exerciseEntryButton)
 		{
 			menuFrame.setVisible(false);
 			exerciseEntryFrame.setVisible(true);
+                        currentFrame = exerciseEntryFrame;
 		}
 		else if(event.getSource() == calorieCalcButton)
 		{
 			menuFrame.setVisible(false);
-			
 			calorieCalcFrame.setVisible(true);
+                        currentFrame = calorieCalcFrame;
 		}
 		
 		
 	}
-
 }
 

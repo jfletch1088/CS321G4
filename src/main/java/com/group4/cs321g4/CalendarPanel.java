@@ -143,6 +143,13 @@ public class CalendarPanel extends JPanel {
             pane.add(prevPanel, BorderLayout.CENTER);
             pane.revalidate();
                 });
+        
+        JButton mainMenuBtn = new JButton("Back");
+        mainMenuBtn.addActionListener(event -> {
+        setVisible(false);
+        new MainMenu();
+        });
+        add(mainMenuBtn, c);
     }
     
     @Override

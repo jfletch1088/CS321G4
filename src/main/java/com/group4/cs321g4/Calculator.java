@@ -67,16 +67,17 @@ public class Calculator extends JPanel implements ActionListener {
       gbc.gridx = 0; gbc.gridy = 4; panel.add(inputBox, gbc);        
       gbc.gridx = 3; gbc.gridy = 4; panel.add(buttonEquals, gbc);
       add(panel, BorderLayout.CENTER);    
+      JButton mainMenuBtn = new JButton("Back");
+        mainMenuBtn.addActionListener(event -> {
+        setVisible(false);
+        new MainMenu();
+        });
+        add(mainMenuBtn, gbc);
    }
    public static void main(String[] args) {
       createWindow();
    }
 
-   public static void createUI(JFrame frame) {
-         
-   }
-
-   
    private static void createWindow() { 
       frame = new JFrame("Calculator");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

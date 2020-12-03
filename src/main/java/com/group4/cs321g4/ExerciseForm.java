@@ -47,6 +47,14 @@ public class ExerciseForm extends JPanel implements ActionListener {
         JButton submitButton = new JButton("Submit");
         submitButton.addActionListener(this);
         add(submitButton,c);
+        
+        JButton mainMenuBtn = new JButton("Back");
+        mainMenuBtn.addActionListener(event -> {
+        setVisible(false);
+        new MainMenu();
+        });
+        add(mainMenuBtn, c);
+       
     }
     
     private static void createFrame()
