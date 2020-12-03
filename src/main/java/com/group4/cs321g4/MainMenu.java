@@ -14,32 +14,23 @@ public class MainMenu extends JFrame implements ActionListener {
 	
 	int count = 0;
 	// Frames
-	private JFrame progressFrame;
-	private JFrame menuFrame;
-	private JFrame calendarFrame;
-	private JFrame exerciseEntryFrame;
-	private JFrame calorieCalcFrame;
-	private JFrame currentFrame;
+	private final JFrame menuFrame;
         
 	// Panels
-	private JPanel mainPanel;
+	private final JPanel mainPanel;
 	private JPanel progressLogPanel;
 	private JPanel calendarPanel;
 	private JPanel exerciseEntryPanel;
 	private JPanel calorieCalcPanel;
-	
-	// Labels
-	private JLabel progressLogLabel;
-	private JLabel mainLabel;
-	private JLabel calendarLabel;
-	private JLabel exerciseEntryLabel;
-	private JLabel calorieCalcLabel;
-	
+        
+	// Label
+	private final JLabel mainLabel;
+        
 	// Buttons
-	private JButton calendarButton;
-	private JButton calorieCalcButton;
-	private JButton progressLogButton;
-	private JButton exerciseEntryButton;
+	private final JButton calendarButton;
+	private final JButton calorieCalcButton;
+	private final JButton progressLogButton;
+	private final JButton exerciseEntryButton;
 	
 	
 	
@@ -50,10 +41,6 @@ public class MainMenu extends JFrame implements ActionListener {
 		// Frames----------------------------------------------------------
 		menuFrame = new JFrame(); 											// Frame for the main menu
                 removeAll();
-		progressFrame = new JFrame();										// Frame for progress log menu
-		calendarFrame = new JFrame();										// Frame for calendar menu
-		exerciseEntryFrame = new JFrame();
-		calorieCalcFrame = new JFrame();
 		// Panels----------------------------------------------------------	
 		progressLogPanel = new JPanel();									// Panel for progress log frame
 		mainPanel = new JPanel();											// Panel for main menu frame
@@ -62,11 +49,7 @@ public class MainMenu extends JFrame implements ActionListener {
 		calorieCalcPanel = new JPanel();
 		
 		// Labels----------------------------------------------------------
-		mainLabel = new JLabel("Please select an option.");					// Label for main menu frame
-		progressLogLabel = new JLabel("This is the progress log");			// Label for progress log frame
-		calendarLabel = new JLabel("This is the Calendar");
-		exerciseEntryLabel = new JLabel("This is the Exercise Entry menu");
-		calorieCalcLabel = new JLabel("This is the Calorie Calculator");
+		mainLabel = new JLabel("Please select an option.");	
 		
 		// Buttons---------------------------------------------------------
 		progressLogButton = new JButton("Progress Log");					// Button that takes user to progress log frame

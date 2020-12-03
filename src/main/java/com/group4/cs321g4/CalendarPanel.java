@@ -18,21 +18,10 @@ public class CalendarPanel extends JPanel {
     static int adjustMonth = 0;
     public CalendarPanel(JFrame frame){
         
-        
-        JPanel calDayHeaderPanel = new JPanel();
-        calDayHeaderPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
-        // For-loop to create a panel for each day of the week header
-        String[]daysOfWeek = {"Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"};
-        for (int i = 0; i<7;i++)
-        {
-            c.gridx = i;
-            String header = daysOfWeek[i];
-            calDayHeaderPanel.add(new JLabel(header), c);
-        }
-        frame.add(calDayHeaderPanel, BorderLayout.NORTH);
+        
         // Create a panel for the individual days in each month
         JPanel calDaysPanel = new JPanel();
         // The # of rows in each month is variable based on the layout of the month, so rows = 0.
@@ -52,10 +41,19 @@ public class CalendarPanel extends JPanel {
         boolean firstDOMSet = false;
         // iterator variable for firstDOMSet conditional loop
         int j = 1;
-        int calendarRow = 0;
+        int calendarRow = 1;
         int calendarCol = 0;
         int buttonsMade = 0;
 
+        // For-loop to create a panel for each day of the week header
+    
+        String[]daysOfWeek = {"Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"};
+        for (int i = 0; i<7;i++)
+        {
+            c.gridx = i;
+            String header = daysOfWeek[i];
+            calDaysPanel.add(new JLabel(header), c);
+        }
         // For-loop to iterate from 2nd day of month until last day of month, used to populate the calendar. 
         for (int i = 2; i <= daysInMonth; i++)
         {
@@ -145,7 +143,7 @@ public class CalendarPanel extends JPanel {
                 });
     }
     
-    @Override
+    /*@Override
     public Dimension getPreferredSize() 
     {
         return new Dimension(800, 300);
@@ -161,5 +159,5 @@ public class CalendarPanel extends JPanel {
     public Dimension getMaximumSize() 
     {
         return getPreferredSize();
-    }
+    }*/
 }
