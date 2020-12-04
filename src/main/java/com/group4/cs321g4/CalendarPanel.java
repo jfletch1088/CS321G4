@@ -58,7 +58,7 @@ public class CalendarPanel extends JPanel {
         }
         
         // For-loop to iterate from 2nd day of month until last day of month, used to populate the calendar. 
-        for (int i = 2; i <= daysInMonth; i++)
+        for (int i = 1; i <= daysInMonth; i++)
         {
             // While loop for formatting the top row of the calendar.  
             while (!firstDOMSet)

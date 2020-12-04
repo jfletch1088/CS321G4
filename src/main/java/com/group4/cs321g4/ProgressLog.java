@@ -54,7 +54,7 @@ public class ProgressLog extends JPanel {
             hrs = Integer.parseInt(logFile.next());
             mins = Integer.parseInt(logFile.next());
             
-            System.out.println(month + "," + day + "," + year + "," + exerType + "," + hrs + "," +mins + "\n");
+            System.out.println(month + "," + day + "," + year + "," + exerType + "," + hrs + "," +mins);
             
             exEntry = new ExerciseEntry(month, day, year, exerType, hrs, mins);
             entries++;
