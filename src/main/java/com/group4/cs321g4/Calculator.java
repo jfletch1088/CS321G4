@@ -39,7 +39,8 @@ public class Calculator extends JPanel {
 
 		add(new JLabel("Input minutes exercised:"));
 		add(inputLengthBox);
-		add(new JLabel("Input weight in kg used:"));
+		
+		add(new JLabel("Input bodyweight in kg:"));
 		add(inputWeightBox);
 
 		// Used to select exercise type for calculations.
@@ -114,12 +115,12 @@ public class Calculator extends JPanel {
 	 * @param weight the weight of the person
 	 * @return Calories burned based on the function
 	 */
-	private static double computeCalories(double exerciseLength, double weightUsed) {
+	private static double computeCalories(double exerciseLength, double weight) {
 		// Energy expenditure (calories/minute) = .0175 x MET (from table) x weight (in
 		// kilograms)
 		double caloriesBurned = 0.0;
-		caloriesBurned = .0175 * exerciseLength * ExerciseType.valueOf(selectedExercise).getPerMinValue() * weightUsed;
-
-		return caloriesBurned;
+		caloriesBurned = .0175 * exerciseLength * ExerciseType.valueOf(selectedExercise).getPerMinValue() * weight;
+                
+		return Math.round(caloriesBurned);
 	}
 }

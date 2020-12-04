@@ -23,9 +23,10 @@ import javax.swing.JPanel;
  */
 
 public class ProgressLog extends JPanel {
-    static int entries = 0;
+    static int entries;
     ExerciseEntry exEntry, curEntry; 
     public ProgressLog()    {
+        entries = 0;
         File logFile = new File("..\\logFileName.txt");
         try {
             Scanner readFile = new Scanner(logFile);
@@ -35,18 +36,19 @@ public class ProgressLog extends JPanel {
         } catch (FileNotFoundException error) {
             System.out.println("Cannot open log file for reading");
         }
-        JPanel logPanel = new JPanel();
+        /*JPanel logPanel = new JPanel();
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
-
         for (int i = 0; i < entries; i++)
         {
-            JLabel entry = new JLabel("Exercise #" + entries + " date: " + curEntry.getMonth() + "/" + curEntry.getDay() + "/" + curEntry.getYear() + " Type: " + curEntry.getExerciseType() +
+            JLabel entry = new JLabel("Exercise #" + i + " date: " + curEntry.getMonth() + "/" + curEntry.getDay() + "/" + curEntry.getYear() + " Type: " + curEntry.getExerciseType() +
                     " Duration: " + curEntry.getDurationHrs() + " hours and " + curEntry.getDurationMins());
-            logPanel.add(entry);
-        }
-        add(logPanel, c);
+            c.gridy = i;
+            logPanel.add(entry, c);
+            add(logPanel, c);
+        }*/
+        //add(logPanel, c);
         
     }
     
@@ -58,16 +60,25 @@ public class ProgressLog extends JPanel {
         //ArrayList<ExerciseEntry> progressEntries = new ArrayList<ExerciseEntry>();
         while (logFile.hasNext())
         {
-            month = Integer.parseInt(logFile.next());
-            day = Integer.parseInt(logFile.next());
-            year = Integer.parseInt(logFile.next());
-            exerType = logFile.next();
-            hrs = Integer.parseInt(logFile.next());
-            mins = Integer.parseInt(logFile.next());
-            
+            String[] temp = logFile.nextLine().split(",");
+            month = Integer.parseInt(temp[0]);
+            day = Integer.parseInt(temp[1]);
+            year = Integer.parseInt(temp[2]);
+            exerType = temp[3];
+            hrs = Integer.parseInt(temp[4]);
+            mins = Integer.parseInt(temp[5]);
             System.out.println(month + "," + day + "," + year + "," + exerType + "," + hrs + "," +mins);
             
             exEntry = new ExerciseEntry(month, day, year, exerType, hrs, mins);
+            JPanel logPanel = new JPanel();
+            GridBagConstraints c = new GridBagConstraints();
+            c.gridwidth = GridBagConstraints.REMAINDER;
+            c.fill = GridBagConstraints.HORIZONTAL;
+            JLabel entry = new JLabel("Exercise #" + (entries+1) + " date: " + exEntry.getMonth() + "/" + exEntry.getDay() + "/" + exEntry.getYear() + " Type: " + exEntry.getExerciseType() +
+                    " Duration: " + exEntry.getDurationHrs() + " hours and " + exEntry.getDurationMins());
+            c.gridy = entries;
+            logPanel.add(entry, c);
+            add(logPanel, c);
             entries++;
         }
         logFile.close();

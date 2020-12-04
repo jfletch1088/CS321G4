@@ -40,12 +40,12 @@ public class ExerciseForm extends JPanel implements ActionListener {
         add(exDateLabel, c);
         add(exDateField, c);
         
-        JLabel exTypeLabel = new JLabel("Enter your exercise type: ");
+        JLabel exTypeLabel = new JLabel("Enter your exercise type (strength or cardio): ");
         exTypeField = new JTextField(20);
         add(exTypeLabel, c);
         add(exTypeField, c);
         
-        JLabel exLengthLabel = new JLabel("Enter your exercise length: ");
+        JLabel exLengthLabel = new JLabel("Enter your exercise length ");
         exLengthHrsField = new JTextField(5);
         exLengthMinsField = new JTextField(5);
         JLabel exLengthHrsLabel = new JLabel("Hours: ");
@@ -83,8 +83,8 @@ public class ExerciseForm extends JPanel implements ActionListener {
         try 
         {
             File logFile = new File("..\\logFileName.txt");
-            FileWriter writeFile = new FileWriter(logFile);
-            writeFile.write(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins);
+            FileWriter writeFile = new FileWriter(logFile, true);
+            writeFile.append(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins + "\n");
             writeFile.close();
             System.out.println("Exercise written to file");
         } catch (IOException error) {
