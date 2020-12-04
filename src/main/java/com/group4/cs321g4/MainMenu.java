@@ -100,7 +100,7 @@ public class MainMenu extends JFrame implements ActionListener {
                     System.out.println("log file created");
                 }else 
                 {
-                    System.out.println("log file not created");
+                    System.out.println("log file not created, already exists");
                 }
             }catch (IOException error)
             {
@@ -117,7 +117,7 @@ public class MainMenu extends JFrame implements ActionListener {
 		if(event.getSource() == progressLogButton)
 		{
 			menuFrame.remove(mainPanel);
-                        progressLogPanel = new JPanel();
+                        progressLogPanel = new ProgressLog();
                         menuFrame.add(progressLogPanel, BorderLayout.CENTER);
                         JButton mainMenuBtn = new JButton("Back");
                         menuFrame.add(mainMenuBtn, BorderLayout.SOUTH);

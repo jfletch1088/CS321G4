@@ -68,14 +68,14 @@ public class ExerciseForm extends JPanel implements ActionListener {
        
         try 
         {
-            FileWriter writeFile = new FileWriter("log.txt");
-            writeFile.write(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins + ";");
+            File logFile = new File("..\\logFileName.txt");
+            FileWriter writeFile = new FileWriter(logFile);
+            writeFile.write(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins + "\n");
             writeFile.close();
-            System.out.println("tried to write to file");
+            System.out.println("Exercise written to file");
         } catch (IOException error) {
             System.out.println("An error occurred writing to file.");
             error.printStackTrace();
         }
-        //new ExerciseForm();
     }
 }
