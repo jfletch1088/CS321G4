@@ -1,6 +1,13 @@
-
 package com.group4.cs321g4;
-
+/**
+ * CS 321-02 Group 4
+ * Implementation
+ * 3 December 2020
+ * This is the ExerciseEntry class
+ * This class is intended to store data for exercise entries
+ * @author John Fletcher, Kyle Nelson, Justin McBride, Dylan Wright
+ *
+ */
 public class ExerciseEntry {
     
     private final int month;

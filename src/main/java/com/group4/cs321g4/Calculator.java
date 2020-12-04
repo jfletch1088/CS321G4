@@ -13,6 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+ * CS 321-02 Group 4
+ * Implementation
+ * 3 December 2020
+ * This is the Calculator class
+ * This class is intended to calculate total calories burned from the different kinds of exercises
+ * This creates a calorie calculator 
+ * @author John Fletcher, Kyle Nelson, Justin McBride, Dylan Wright
+ *
+ */
 public class Calculator extends JPanel {
 	private static JTextField inputLengthBox;
 	private static JTextField inputWeightBox;
@@ -101,8 +111,8 @@ public class Calculator extends JPanel {
 	 * selected and length of exercise.
 	 * 
 	 * @param exerciseLength Length of the exercise in minutes
-	 * @param weightUsed 
-	 * @return Calories burned based on exercise.
+	 * @param weight the weight of the person
+	 * @return Calories burned based on the function
 	 */
 	private static double computeCalories(double exerciseLength, double weightUsed) {
 		// Energy expenditure (calories/minute) = .0175 x MET (from table) x weight (in

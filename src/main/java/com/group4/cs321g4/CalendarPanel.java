@@ -14,6 +14,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * CS 321-02 Group 4
+ * Implementation
+ * 3 December 2020
+ * This is the CalendarPannel class
+ * This class is intended to draw a calendar so that exercises can be planned
+ * @author John Fletcher, Kyle Nelson, Justin McBride, Dylan Wright
+ *
+ */
+
 public class CalendarPanel extends JPanel {
     static int adjustMonth= 0;
     public CalendarPanel(){

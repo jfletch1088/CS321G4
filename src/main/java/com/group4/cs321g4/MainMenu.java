@@ -12,6 +12,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * CS 321-02 Group 4
+ * Implementation
+ * 3 December 2020
+ * This is the MainMenu class
+ * This class is intended to create the main menu and run the exercise log program
+ * @author John Fletcher, Kyle Nelson, Justin McBride, Dylan Wright
+ *
+ */
+
 public class MainMenu extends JFrame implements ActionListener {
 	
 	int count = 0;
@@ -90,6 +100,11 @@ public class MainMenu extends JFrame implements ActionListener {
 		
 	}
 	
+        /**
+	 * This is the main method
+	 * This creates the menu and all of the buttons
+	 * @param args the code to run
+	 */
 	public static void main(String[] args) {
 		try 
             {
@@ -111,7 +126,11 @@ public class MainMenu extends JFrame implements ActionListener {
 
 	}
 
-	
+	/**
+	 * This is the actionPerformed function
+	 * This listens for actions, like button presses, and runs the proper code for the button presses
+	 * @param event this is either the log, calendar, exercise entry, or calorie calculator button press event
+	 */
 	public void actionPerformed(ActionEvent event) {
 		
 		if(event.getSource() == progressLogButton)

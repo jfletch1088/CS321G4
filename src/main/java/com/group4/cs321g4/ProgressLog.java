@@ -11,6 +11,17 @@ import java.util.Scanner;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * CS 321-02 Group 4
+ * Implementation
+ * 3 December 2020
+ * This is the ProgressLog class
+ * This class is intended to read the exercise log file and display the data
+ * This creates a display of logged exercises
+ * @author John Fletcher, Kyle Nelson, Justin McBride, Dylan Wright
+ *
+ */
+
 public class ProgressLog extends JPanel {
     static int entries = 0;
     ExerciseEntry exEntry, curEntry; 
