@@ -12,6 +12,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * CS 321-02 Group 4
+ * Implementation
+ * 3 December 2020
+ * This is the ExerciseForm class
+ * This class is intended to create a form to be filled out with exercise data
+ * This creates an exercise form and displays it
+ * @author John Fletcher, Kyle Nelson, Justin McBride, Dylan Wright
+ *
+ */
 
 public class ExerciseForm extends JPanel implements ActionListener {
     protected JTextField exDateField;
@@ -51,6 +61,10 @@ public class ExerciseForm extends JPanel implements ActionListener {
         add(submitButton,c);
     }
    
+    /**
+     * This is the actionPerformed function
+     * This is intended to listen for the form being submitted and store the exercise data
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String date = exDateField.getText();
@@ -70,7 +84,7 @@ public class ExerciseForm extends JPanel implements ActionListener {
         {
             File logFile = new File("..\\logFileName.txt");
             FileWriter writeFile = new FileWriter(logFile);
-            writeFile.write(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins + "\n");
+            writeFile.write(exerMonth + "," + exerDay + "," + exerYear + "," + exerType + "," + exerLengthHrs + "," +exerLengthMins);
             writeFile.close();
             System.out.println("Exercise written to file");
         } catch (IOException error) {
