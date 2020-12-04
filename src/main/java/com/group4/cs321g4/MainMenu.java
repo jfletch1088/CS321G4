@@ -93,7 +93,8 @@ public class MainMenu extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		try 
             {
-                File logFile = new File("/log.txt");
+                File logFile = new File("..\\logFileName.txt");
+//                logFile.mkdir(); // Turn this on once we decide on a dir
                 if (logFile.createNewFile())
                 {
                     System.out.println("log file created");
