@@ -1,7 +1,9 @@
 package com.group4.cs321g4;
 
 public enum ExerciseType {
-	HighIntensityCardio(5), LowIntensityCardio(8), WeightTraining(10);
+	//More Exercises can be added. The int variable is the calories per minute burned.
+	//TODO: Actually research what these values are. These are the METS.
+	High_Intensity_Cardio(6), Low_Intensity_Cardio(6), Weight_Training(16);
 
 	private final int perMinValue;
 

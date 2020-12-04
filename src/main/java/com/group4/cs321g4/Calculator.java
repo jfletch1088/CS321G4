@@ -1,110 +1,118 @@
 package com.group4.cs321g4;
+
 import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class Calculator extends JPanel implements ActionListener {
-   private static JTextField inputBox;
-   
-   Calculator(){
-      JPanel panel = new JPanel();
-      GridBagLayout layout = new GridBagLayout();          
-      GridBagConstraints gbc = new GridBagConstraints();
-      panel.setLayout(layout);
-       
-      inputBox = new JTextField(10);        
-      inputBox.setEditable(false);
+public class Calculator extends JPanel {
+	private static JTextField inputLengthBox;
+	private static JTextField inputWeightBox;
+	private static JTextField outputBox;
+	private static String selectedExercise;
 
-      JButton button0 = new JButton("0");JButton button1 = new JButton("1");
-      JButton button2 = new JButton("2");JButton button3 = new JButton("3");
-      JButton button4 = new JButton("4");JButton button5 = new JButton("5");
-      JButton button6 = new JButton("6");JButton button7 = new JButton("7");
-      JButton button8 = new JButton("8");JButton button9 = new JButton("9");
+	Calculator() {
+		JPanel panel = new JPanel();
+		inputLengthBox = new JTextField(5);
+		inputLengthBox.setEditable(true);
+		outputBox = new JTextField(10);
+		outputBox.setEditable(false);
+		inputWeightBox = new JTextField(10);
+		inputWeightBox.setEditable(true);
 
-      JButton buttonPlus = new JButton("+");JButton buttonMinus = new JButton("-");
-      JButton buttonDivide = new JButton("/");JButton buttonMultiply = new JButton("x");
-      JButton buttonClear = new JButton("C");JButton buttonDot = new JButton(".");
-      JButton buttonEquals = new JButton("=");
+		panel.add(new JLabel("Input minutes exercised:"), BorderLayout.WEST);
+		panel.add(inputLengthBox, BorderLayout.CENTER);
+		panel.add(new JLabel("Input weight in kg used:"), BorderLayout.WEST);
+		panel.add(inputWeightBox, BorderLayout.CENTER);
 
-      button1.addActionListener(this);button2.addActionListener(this);
-      button3.addActionListener(this);button4.addActionListener(this);
-      button5.addActionListener(this);button6.addActionListener(this);
-      button7.addActionListener(this);button8.addActionListener(this);
-      button9.addActionListener(this);button0.addActionListener(this);
+		// Used to select exercise type for calculations.
+		JRadioButton t1 = new JRadioButton(ExerciseType.High_Intensity_Cardio.toString());
+		t1.setActionCommand(ExerciseType.High_Intensity_Cardio.toString());
+		t1.setSelected(true);
+		selectedExercise = (ExerciseType.High_Intensity_Cardio.toString());
+		JRadioButton t2 = new JRadioButton(ExerciseType.Low_Intensity_Cardio.toString());
+		t2.setActionCommand(ExerciseType.Low_Intensity_Cardio.toString());
+		JRadioButton t3 = new JRadioButton(ExerciseType.Weight_Training.toString());
+		t3.setActionCommand(ExerciseType.Weight_Training.toString());
 
-      buttonPlus.addActionListener(this);buttonMinus.addActionListener(this);
-      buttonDivide.addActionListener(this);buttonMultiply.addActionListener(this);
-      buttonClear.addActionListener(this);buttonDot.addActionListener(this);
-      buttonEquals.addActionListener(this);
+		// Used to group the radio buttons so as only one is active.
+		ButtonGroup ExerciseGroup = new ButtonGroup();
+		ExerciseGroup.add(t1);
+		ExerciseGroup.add(t2);
+		ExerciseGroup.add(t3);
 
-      gbc.fill = GridBagConstraints.HORIZONTAL;
-      gbc.gridx = 0; gbc.gridy = 0; panel.add(button1, gbc);        
-      gbc.gridx = 1; gbc.gridy = 0; panel.add(button2, gbc);
-      gbc.gridx = 2; gbc.gridy = 0; panel.add(button3, gbc);
-      gbc.gridx = 3; gbc.gridy = 0; panel.add(buttonPlus, gbc);
-      gbc.gridx = 0; gbc.gridy = 1; panel.add(button4, gbc);
-      gbc.gridx = 1; gbc.gridy = 1; panel.add(button5, gbc);
-      gbc.gridx = 2; gbc.gridy = 1; panel.add(button6, gbc);
-      gbc.gridx = 3; gbc.gridy = 1; panel.add(buttonMinus, gbc);
-      gbc.gridx = 0; gbc.gridy = 2; panel.add(button7, gbc);
-      gbc.gridx = 1; gbc.gridy = 2; panel.add(button8, gbc);
-      gbc.gridx = 2; gbc.gridy = 2; panel.add(button9, gbc);
-      gbc.gridx = 3; gbc.gridy = 2; panel.add(buttonDivide, gbc);
-      gbc.gridx = 0; gbc.gridy = 3; panel.add(buttonDot, gbc);
-      gbc.gridx = 1; gbc.gridy = 3; panel.add(button0, gbc);
-      gbc.gridx = 2; gbc.gridy = 3; panel.add(buttonClear, gbc);
-      gbc.gridx = 3; gbc.gridy = 3; panel.add(buttonMultiply, gbc);
-      gbc.gridwidth = 3;
+		// The event for the radio buttons.
+		ActionListener k1 = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				selectedExercise = e.getActionCommand();
+			}
+		};
+		t1.addActionListener(k1);
+		t2.addActionListener(k1);
+		t3.addActionListener(k1);
 
-      gbc.gridx = 0; gbc.gridy = 4; panel.add(inputBox, gbc);        
-      gbc.gridx = 3; gbc.gridy = 4; panel.add(buttonEquals, gbc);
-      add(panel, BorderLayout.CENTER); 
-   }
+		// The button that calls the calculate.
+		JButton button1 = new JButton("Calculate Calories Burned.");
+		ActionListener k = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					double exerciseLength = Double.parseDouble(inputLengthBox.getText());
+					double weightUsed = Double.parseDouble(inputWeightBox.getText());
+					outputBox.setText(String.valueOf(computeCalories(exerciseLength, weightUsed)) + " calories");
+					
+				} catch (NumberFormatException e1) {
+					outputBox.setText("Invalid Entry");
+				}
+			}
+		};
+		button1.addActionListener(k);
 
-   public void actionPerformed(ActionEvent e) {
-      String command = e.getActionCommand();
-      if (command.charAt(0) == 'C') {                      
-         inputBox.setText("");
-      }else if (command.charAt(0) == '=') {                    
-         inputBox.setText(evaluate(inputBox.getText()));
-      }else {                                
-         inputBox.setText(inputBox.getText() + command);
-      }
-   }
- 
-   public static String evaluate(String expression) {
-      char[] arr = expression.toCharArray();
-      String operand1 = "";String operand2 = "";String operator = "";
-      double result = 0;
+		// Used for testing.
+//		JButton button0 = new JButton("1");
+//		ActionListener k2 = new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				inputLengthBox.setText("1");
+//			}
+//		};
+//		button0.addActionListener(k2);
+//		panel.add(button0);
 
-      for (int i = 0; i < arr.length; i++) {
-         if (arr[i] >= '0' && arr[i] <= '9' || arr[i] == '.') {
-            if(operator.isEmpty()){
-               operand1 += arr[i];
-            }else{
-               operand2 += arr[i];
-            }
-         }  
+		// Adding components.
+		// TODO: Make pretty.
+		panel.add(button1);
+		panel.add(outputBox);
+		panel.add(t1);
+		panel.add(t2);
+		panel.add(t3);
+		add(panel, BorderLayout.CENTER);
+	}
 
-         if(arr[i] == '+' || arr[i] == '-' || arr[i] == '/' || arr[i] == '*') {
-            operator += arr[i];
-         }
-      }
+	/**
+	 * This is used to calculate calories burned based on which radio button is
+	 * selected and length of exercise.
+	 * 
+	 * @param exerciseLength Length of the exercise in minutes
+	 * @param weightUsed 
+	 * @return Calories burned based on exercise.
+	 */
+	private static double computeCalories(double exerciseLength, double weightUsed) {
+		// Energy expenditure (calories/minute) = .0175 x MET (from table) x weight (in
+		// kilograms)
+		double caloriesBurned = 0.0;
+		ExerciseType yeet = ExerciseType.valueOf(selectedExercise);
+		caloriesBurned = .0175 * exerciseLength * yeet.getPerMinValue() * weightUsed;
 
-      if (operator.equals("+"))
-         result = (Double.parseDouble(operand1) + Double.parseDouble(operand2));
-      else if (operator.equals("-"))
-         result = (Double.parseDouble(operand1) - Double.parseDouble(operand2));
-      else if (operator.equals("/"))
-         result = (Double.parseDouble(operand1) / Double.parseDouble(operand2));
-      else
-         result = (Double.parseDouble(operand1) * Double.parseDouble(operand2));          
-      return operand1 + operator + operand2 + "=" +result;
-   }    
-} 
+		return caloriesBurned;
+	}
+}
