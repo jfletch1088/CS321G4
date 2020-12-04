@@ -20,7 +20,6 @@ public class Calculator extends JPanel {
 	private static String selectedExercise;
 
 	Calculator() {
-		JPanel panel = new JPanel();
 		inputLengthBox = new JTextField(5);
 		inputLengthBox.setEditable(true);
 		outputBox = new JTextField(10);
@@ -28,10 +27,10 @@ public class Calculator extends JPanel {
 		inputWeightBox = new JTextField(10);
 		inputWeightBox.setEditable(true);
 
-		panel.add(new JLabel("Input minutes exercised:"), BorderLayout.WEST);
-		panel.add(inputLengthBox, BorderLayout.CENTER);
-		panel.add(new JLabel("Input weight in kg used:"), BorderLayout.WEST);
-		panel.add(inputWeightBox, BorderLayout.CENTER);
+		add(new JLabel("Input minutes exercised:"));
+		add(inputLengthBox);
+		add(new JLabel("Input weight in kg used:"));
+		add(inputWeightBox);
 
 		// Used to select exercise type for calculations.
 		JRadioButton t1 = new JRadioButton(ExerciseType.High_Intensity_Cardio.toString());
@@ -86,16 +85,15 @@ public class Calculator extends JPanel {
 //			}
 //		};
 //		button0.addActionListener(k2);
-//		panel.add(button0);
+//		add(button0);
 
 		// Adding components.
 		// TODO: Make pretty.
-		panel.add(button1);
-		panel.add(outputBox);
-		panel.add(t1);
-		panel.add(t2);
-		panel.add(t3);
-		add(panel, BorderLayout.CENTER);
+		add(button1);
+		add(outputBox);
+		add(t1);
+		add(t2);
+		add(t3);
 	}
 
 	/**
@@ -110,8 +108,7 @@ public class Calculator extends JPanel {
 		// Energy expenditure (calories/minute) = .0175 x MET (from table) x weight (in
 		// kilograms)
 		double caloriesBurned = 0.0;
-		ExerciseType yeet = ExerciseType.valueOf(selectedExercise);
-		caloriesBurned = .0175 * exerciseLength * yeet.getPerMinValue() * weightUsed;
+		caloriesBurned = .0175 * exerciseLength * ExerciseType.valueOf(selectedExercise).getPerMinValue() * weightUsed;
 
 		return caloriesBurned;
 	}
